@@ -10,6 +10,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { SectionSalesComponent } from './sections/section-sales/section-sales.component';
 import { SectionOrdersComponent } from './sections/section-orders/section-orders.component';
 import { SectionHealthComponent } from './sections/section-health/section-health.component';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { SectionHealthComponent } from './sections/section-health/section-health
     SectionOrdersComponent,
     SectionHealthComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, RouterModule.forRoot(appRoutes)],
+  imports: [BrowserModule, AppRoutingModule, RouterModule.forRoot(appRoutes), NgChartsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
