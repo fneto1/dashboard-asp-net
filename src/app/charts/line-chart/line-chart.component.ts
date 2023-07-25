@@ -56,6 +56,12 @@ export class LineChartComponent {
   public lineChartLabels = LINE_CHART_LABELS;
   public lineChartOptions: any = {
     responsive: true,
+    elements: {
+      line: {
+        tension: 0.5,
+      },
+    },
+    maintainAspectRatio: false,
   };
   public lineChartLegend = true;
   public lineChartType: ChartType = 'line';

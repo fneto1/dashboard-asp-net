@@ -29,5 +29,6 @@ export class BarChartComponent {
   public barChartOptions: any = {
     scaleShowVerticalLines: false,
     responsive: true,
+    maintainAspectRatio: false,
   };
 }

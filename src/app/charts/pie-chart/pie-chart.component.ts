@@ -16,6 +16,7 @@ export class PieChartComponent {
       },
     },
     borderColor: '#111',
+    maintainAspectRatio: false,
   };
 
   public pieChartData: ChartData<'pie', number[], string | string[]> = {
@@ -27,5 +28,5 @@ export class PieChartComponent {
     ],
   };
   pieChartLabels: string[] = ['Cobra', 'Wandão', 'DonPollo'];
-  public pieChartType: ChartType = 'pie';
+  public pieChartType: ChartType = 'doughnut';
 }
