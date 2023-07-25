@@ -27,5 +27,5 @@ export class PieChartComponent {
     ],
   };
   pieChartLabels: string[] = ['Cobra', 'Wandão', 'DonPollo'];
-  public pieChartType: ChartType = 'doughnut';
+  public pieChartType: ChartType = 'pie';
 }
