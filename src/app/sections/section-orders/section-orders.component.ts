@@ -1,81 +1,48 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Order } from 'src/app/shared/order';
+import { SalesDataService } from '../../services/sales-data.service';
 
 @Component({
   selector: 'app-section-orders',
   templateUrl: './section-orders.component.html',
   styleUrls: ['./section-orders.component.css'],
 })
-export class SectionOrdersComponent {
-  orders: Order[] = [
-    {
-      id: 1,
-      customer: {
-        id: 2,
-        name: 'Cobra Corp.',
-        email: 'cobra@teste.com',
-        state: 'BA',
-      },
-      total: 1337,
-      placed: new Date(2023, 7, 1),
-      fullfilled: new Date(2023, 7, 25),
-      status: 'Completed',
-    },
+export class SectionOrdersComponent implements OnInit {
+  constructor(private _salesData: SalesDataService) {}
 
-    {
-      id: 2,
-      customer: {
-        id: 2,
-        name: 'Wandao S/A',
-        email: 'wandao@teste.com',
-        state: 'SP',
-      },
-      total: 2500,
-      placed: new Date(2023, 6, 3),
-      fullfilled: new Date(2023, 7, 25),
-      status: 'Completed',
-    },
+  orders?: Order[];
+  total = 0;
+  page = 1;
+  limit = 10;
+  loading = false;
 
-    {
-      id: 3,
-      customer: {
-        id: 3,
-        name: 'Papinho Slimes',
-        email: 'papinho@teste.com',
-        state: 'RJ',
-      },
-      total: 5000,
-      placed: new Date(2023, 4, 21),
-      fullfilled: new Date(2023, 7, 25),
-      status: 'Completed',
-    },
+  ngOnInit(): void {
+    this.getOrders();
+  }
 
-    {
-      id: 4,
-      customer: {
-        id: 4,
-        name: 'Don Pollo',
-        email: 'donpollo@teste.com',
-        state: 'AC',
-      },
-      total: 6471,
-      placed: new Date(2023, 2, 15),
-      fullfilled: new Date(2023, 7, 25),
-      status: 'Completed',
-    },
+  getOrders(): void {
+    this._salesData.getOrders(this.page, this.limit).subscribe((res: any) => {
+      console.log(res);
+      this.orders = res.page.data;
+      this.total = res.page.total;
+      this.loading = false;
+    });
+  }
 
-    {
-      id: 5,
-      customer: {
-        id: 5,
-        name: 'Alfaya',
-        email: 'alfaya@teste.com',
-        state: 'BA',
-      },
-      total: 4200,
-      placed: new Date(2023, 5, 13),
-      fullfilled: new Date(2023, 7, 25),
-      status: 'Completed',
-    },
-  ];
+  goToPrevious(): void {
+    //console.log('Evento 1');
+    this.page--;
+    this.getOrders();
+  }
+
+  goToNext(): void {
+    //console.log('Evento 2');
+    this.page++;
+    this.getOrders();
+  }
+
+  goToPage(n: number): void {
+    this.page = n;
+    this.getOrders();
+  }
 }
